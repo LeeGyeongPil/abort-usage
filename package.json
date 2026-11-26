@@ -1,0 +1,37 @@
+{
+  "name": "abort-usage",
+  "version": "0.1.0",
+  "description": "Token usage middleware for the Vercel AI SDK that still counts input and output tokens when a stream is aborted, cut off or fails, and labels every number as reported or estimated.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": ["ai-sdk", "vercel-ai", "token-usage", "abort", "streaming", "middleware", "llm", "billing"],
+  "repository": { "type": "git", "url": "git+https://github.com/LeeGyeongPil/abort-usage.git" },
+  "homepage": "https://github.com/LeeGyeongPil/abort-usage#readme",
+  "bugs": { "url": "https://github.com/LeeGyeongPil/abort-usage/issues" },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "README.md", "README.ko.md", "LICENSE", "CHANGELOG.md"],
+  "engines": { "node": ">=22" },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "tsc --noEmit && node --test \"test/**/*.test.ts\"",
+    "demo": "node examples/abort-demo.ts",
+    "calibrate": "node scripts/calibrate.ts",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "ai": ">=7.0.0 <8"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.11",
+    "ai": "7.0.183",
+    "gpt-tokenizer": "4.1.2",
+    "typescript": "7.0.2"
+  }
+}
