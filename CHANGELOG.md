@@ -5,6 +5,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-27
+
+### Fixed
+- CI: type check resolves the `abort-usage` import through `tsconfig` paths; workflow actions bumped to v6.
+- Tests verify callback order for all four endings (finish, abort, error, multi-step).
+- README: callback-order test note matches the tests.
+
 ## [0.1.0] - 2026-11-27
 
 ### Added

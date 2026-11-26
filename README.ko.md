@@ -92,7 +92,7 @@ abort estimated low [ 'heuristic-estimate', 'upstream-may-continue' ]
 | 공급자 오류 | `onError`, 이어서 `onFinish` | `onFinish`(`onError` 에서 읽으면 이중 과금) |
 | 다단계 중지 | `onAbort` | `onAbort` |
 
-즉 `onFinish` 와 `onAbort` 로 모든 종료를 정확히 한 번씩 덮습니다. 모델 객체 하나를 여러 요청이 공유한다면 tracker 대신 `usageMiddleware({ onStep })` 을 쓰세요(예제 2). 콜백과 상관없이 끝난 단계마다 한 번 호출됩니다. 이 순서는 SDK 동작이라 다른 `ai` 버전에서는 달라질 수 있고, `npm test` 의 콜백 순서 테스트(`test/abort.test.ts`, `test/error.test.ts`)가 다루는 종료 방식에 한해 설치된 버전에서 확인합니다.
+즉 `onFinish` 와 `onAbort` 로 모든 종료를 정확히 한 번씩 덮습니다. 모델 객체 하나를 여러 요청이 공유한다면 tracker 대신 `usageMiddleware({ onStep })` 을 쓰세요(예제 2). 콜백과 상관없이 끝난 단계마다 한 번 호출됩니다. 이 순서는 SDK 동작이라 다른 `ai` 버전에서는 달라질 수 있고, `npm test` 의 콜백 순서 테스트(`test/finish.test.ts`, `test/abort.test.ts`, `test/error.test.ts`, `test/multistep.test.ts`)가 네 종료 방식 모두를 설치된 버전에서 확인합니다.
 
 ## 핵심 개념
 

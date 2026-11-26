@@ -1,6 +1,6 @@
 {
   "name": "abort-usage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Token usage middleware for the Vercel AI SDK that still counts input and output tokens when a stream is aborted, cut off or fails, and labels every number as reported or estimated.",
   "license": "MIT",
   "type": "module",

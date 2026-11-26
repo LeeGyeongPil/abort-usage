@@ -92,7 +92,7 @@ Which callback fires depends on how the request ends. Measured with `ai` 7.0.183
 | Provider error | `onError`, then `onFinish` | `onFinish` (not `onError`, or the request is billed twice) |
 | Multi-step stop | `onAbort` | `onAbort` |
 
-So `onFinish` plus `onAbort` cover every ending exactly once. If you share one model object between many requests, skip the tracker and use `usageMiddleware({ onStep })` (Example 2): it fires once per ended step regardless of callbacks. This order is SDK behaviour and may change in other `ai` versions; the callback-order tests in `npm test` (`test/abort.test.ts`, `test/error.test.ts`) check the endings they cover against the installed version.
+So `onFinish` plus `onAbort` cover every ending exactly once. If you share one model object between many requests, skip the tracker and use `usageMiddleware({ onStep })` (Example 2): it fires once per ended step regardless of callbacks. This order is SDK behaviour and may change in other `ai` versions; the callback-order tests in `npm test` (`test/finish.test.ts`, `test/abort.test.ts`, `test/error.test.ts`, `test/multistep.test.ts`) check all four endings against the installed version.
 
 ## Core concepts
 
