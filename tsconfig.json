@@ -10,7 +10,8 @@
     "verbatimModuleSyntax": true,
     "erasableSyntaxOnly": true,
     "allowImportingTsExtensions": true,
-    "types": ["node"]
+    "types": ["node"],
+    "paths": { "abort-usage": ["./src/index.ts"] }
   },
   "include": ["src", "test", "examples", "scripts"]
 }
