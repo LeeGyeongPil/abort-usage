@@ -1,0 +1,37 @@
+# No API key or model needed: tests and the demo use a mock provider model.
+name: ci
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 3 * * 1"   # every Monday: catch breakage from new ai releases
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ["22.18", "24"]   # dev scripts rely on Node's built-in TypeScript type stripping (>=22.18)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm pack --dry-run
+  ai-latest:
+    # Early warning: does the newest ai 7.x still behave the way the tests expect?
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm install --no-save "ai@^7"
+      - run: npm test
