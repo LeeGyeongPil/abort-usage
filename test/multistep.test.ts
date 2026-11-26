@@ -6,6 +6,8 @@ import { runScenario, runStream } from './helpers/scenarios.ts';
 // AC-4: an agent finished its tool step, then the user stopped during the second step.
 test('multi-step abort: reported first step plus estimated second step', async () => {
   const r = await runScenario('multistep-abort');
+  // 다단계 중지도 onAbort 한 번만 (README 의 Billing 표와 같아야 한다)
+  assert.deepEqual(r.sdk.callbacks, ['onAbort']);
   // the SDK only knows about the first step
   assert.deepEqual(r.sdk.abortStepUsages, [{ inputTokens: 30, outputTokens: 12 }]);
 

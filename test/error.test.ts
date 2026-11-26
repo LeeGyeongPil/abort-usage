@@ -5,8 +5,8 @@ import { runScenario } from './helpers/scenarios.ts';
 // AC-3: the provider connection breaks with an error chunk.
 test('provider error: the SDK has no usage, abort-usage has numbers', async () => {
   const r = await runScenario('provider-error');
-  assert.ok(r.sdk.callbacks.includes('onError'));
-  assert.ok(r.sdk.callbacks.includes('onFinish'));
+  // SDK 순서: onError 다음 onFinish (README 의 Billing 표와 같아야 한다)
+  assert.deepEqual(r.sdk.callbacks, ['onError', 'onFinish']);
   assert.equal(r.sdk.finishTotalUsage?.inputTokens, undefined);
 
   assert.equal(r.summary.steps.length, 1);

@@ -6,6 +6,8 @@ import { runScenario } from './helpers/scenarios.ts';
 // AC-1: a normal finish is reported by the provider and matches what the SDK sees.
 test('complete stream: one reported step equal to the SDK totalUsage', async () => {
   const r = await runScenario('complete');
+  // 정상 완료는 onFinish 한 번만 (README 의 Billing 표와 같아야 한다)
+  assert.deepEqual(r.sdk.callbacks, ['onFinish']);
   assert.equal(r.summary.steps.length, 1);
   const step = r.summary.steps[0]!;
   assert.equal(step.outcome, 'finish');
